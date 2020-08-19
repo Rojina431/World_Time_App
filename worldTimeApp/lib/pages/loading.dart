@@ -9,7 +9,7 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  String time = 'loading';
+  String time;
 
   void setupData() async {
     WorldTime instance = WorldTime(
