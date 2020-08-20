@@ -14,8 +14,9 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 0),
+        padding: EdgeInsets.fromLTRB(0, 20.0, 0.0, 0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             FlatButton.icon(
                 onPressed: () {
