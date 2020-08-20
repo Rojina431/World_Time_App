@@ -6,10 +6,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Map data = {};
+
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
-      body: SafeArea(
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 0),
         child: Column(
           children: [
             FlatButton.icon(
@@ -18,6 +23,22 @@ class _HomeState extends State<Home> {
                 },
                 icon: Icon(Icons.edit_location),
                 label: Text('Edit location')),
+            Text(
+              data['location'],
+              style: TextStyle(
+                fontSize: 40.0,
+                letterSpacing: 1.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              data['time'],
+              style: TextStyle(
+                fontSize: 30.0,
+                letterSpacing: 1.0,
+              ),
+            ),
           ],
         ),
       ),
