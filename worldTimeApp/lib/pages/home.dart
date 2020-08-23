@@ -10,9 +10,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context).settings.arguments;
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
 
-    String bgImage = data['isDaytime'] ? 'day.webp' : 'night.webp';
+    String bgImage = data['isDaytime'] ? 'day.jpg' : 'night.webp';
     //Color bgColor = data['isDaytime'] ? Colors.blue : Colors.blue[800];
     return Scaffold(
       // backgroundColor: bgColor,
@@ -22,29 +22,39 @@ class _HomeState extends State<Home> {
               image: AssetImage('assets/$bgImage'), fit: BoxFit.cover),
         ),
         child: Padding(
-          padding: EdgeInsets.fromLTRB(0, 20.0, 0.0, 0),
+          padding: EdgeInsets.fromLTRB(50.0, 100.0, 0.0, 0),
           child: Center(
             child: Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              //  crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 FlatButton.icon(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/location');
+                  onPressed: () async {
+                    dynamic result =
+                        await Navigator.pushNamed(context, '/location');
+                    setState(() {
+                      data = {
+                        'time': result['time'],
+                        'location': result['location'],
+                        'isDaytime': result['isDaytime']
+                      };
+                    });
                   },
                   icon: Icon(
                     Icons.edit_location,
-                    color: Colors.grey,
+                    color: Colors.white,
                   ),
                   label: Text(
                     'Edit location',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Colors.white,
                     ),
                   ),
                 ),
                 Text(
                   data['location'],
                   style: TextStyle(
-                    fontSize: 40.0,
+                    fontSize: 30.0,
                     letterSpacing: 1.0,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

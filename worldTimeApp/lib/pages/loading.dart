@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:http/http.dart';
-//import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:worldTimeApp/services/world_time.dart';
 
@@ -14,13 +12,13 @@ class _LoadingState extends State<Loading> {
 
   void setupData() async {
     WorldTime instance = WorldTime(
-        location: 'Berlin', flag: 'germany.png', url: 'Europe/Berlin');
+        location: 'Europe/Berlin', flag: 'germany.png', url: 'Europe/Berlin');
     await instance.getTime();
     Navigator.pushReplacementNamed(context, '/home', arguments: {
       'location': instance.location,
       'time': instance.time,
       'flag': instance.flag,
-      'isDaytime':instance.isDaytime,
+      'isDaytime': instance.isDaytime,
     });
   }
 
